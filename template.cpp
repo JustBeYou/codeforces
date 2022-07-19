@@ -11,6 +11,10 @@ template <typename T>
 void printarray(T v[], uint n);
 template <typename T>
 void printvector(vector<T> v);
+template <typename T>
+void readarray(T v[], uint n);
+template <typename T>
+void readszandarray(T v[], uint &n);
 void prep();
 
 const int nmax = 1e5;
@@ -40,6 +44,20 @@ void printarray(T v[], uint n)
     cout << v[i] << " ";
   }
   cout << endl;
+}
+
+template <typename T>
+void readarray(T v[], uint n)
+{
+  for (uint i = 0; i < n; i++)
+    cin >> v[i];
+}
+
+template <typename T>
+void readszandarray(T v[], uint &n)
+{
+  cin >> n;
+  readarray(v, n);
 }
 
 template <typename T>
