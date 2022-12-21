@@ -2,6 +2,8 @@
 
 using namespace std;
 
+#define dbg(x) cout << #x << " = " << x << "; ";
+
 typedef unsigned long long ull;
 typedef signed long long ll;
 typedef unsigned int uint;
@@ -34,7 +36,11 @@ void update_best(uint node, uint left, uint right, uint i)
 {
   if (left == right)
   {
-    cout << "update " << left << " " << right << " -> " << best[i] << " " << i << endl;
+    cout << "update ";
+    dbg(left);
+    dbg(right);
+    dbg(i);
+    cout << endl;
     max_best_tree[node] = best[i];
     norm_i_tree[node] = i;
     return;
@@ -57,7 +63,12 @@ void update_best(uint node, uint left, uint right, uint i)
 
 int query_best_node(uint node, uint left, uint right, uint q_left, uint q_right)
 {
-  cout << left << " " << right << " " << q_left << " " << q_right << endl;
+  cout << "query ";
+  dbg(left);
+  dbg(right);
+  dbg(q_left);
+  dbg(q_right);
+  cout << endl;
   if (right < q_left || q_right < left)
   {
     return -1;
@@ -65,7 +76,8 @@ int query_best_node(uint node, uint left, uint right, uint q_left, uint q_right)
 
   if (q_left <= left && right <= q_right)
   {
-    cout << "!!!" << node << " " << max_best_tree[node] << " " << norm_i_tree[node] << endl;
+    dbg(node);
+    cout << endl;
     return node;
   }
 
@@ -97,7 +109,6 @@ int query_best_node(uint node, uint left, uint right, uint q_left, uint q_right)
 
 int find_best_j(uint norm_i)
 {
-  cout << "find best for i " << norm_i << endl;
   if (norm_i == 0)
     return -1;
 
@@ -166,7 +177,6 @@ int main()
     before[norm_i] = -1;
 
     int j = find_best_j(norm_i);
-    cout << "found " << j << " for " << norm_i << endl;
     if (j != -1)
     {
       best[norm_i] = 1 + best[j];
