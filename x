@@ -29,9 +29,9 @@ if cmd == "g":
 elif cmd == "r":
   if t == "c":
     p = argv[4]
-    system(f"cd contests/{i} && g++ {p}.cpp -DDEBUG -o {p} && ./{p} && rm ./{p}")
+    system(f"cd contests/{i} && g++ -Wall -Wextra {p}.cpp -DDEBUG -o {p} && ./{p} && rm ./{p}")
   elif t == "p":
-    system(f"cd problems/{i} && g++ main.cpp -DDEBUG -o main && ./main && rm ./main")
+    system(f"cd problems/{i} && g++ -Wall -Wextra main.cpp -DDEBUG -o main && ./main && rm ./main")
   else:
     help()
 else:
