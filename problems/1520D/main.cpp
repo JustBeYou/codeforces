@@ -12,38 +12,41 @@ void printarray(T v[], uint n);
 template <typename T>
 void printvector(vector<T> v);
 template <typename T>
-void readarray(T v[], uint n);
+void readarray(T v[], ull n);
 template <typename T>
-void readszandarray(T v[], uint &n);
+void readszandarray(T v[], ull &n);
 void prep();
 
-const int nmax = 1e5;
-
-<<<<<<< HEAD
-=======
+const int nmax = 2 * 1e5 + 1;
 ull a[nmax];
+map<ull, ull> freq;
 
-ull calc_cost(ull v[], uint n)
-{
-}
-
->>>>>>> a61c704 (problems)
 int main()
 {
   prep();
 
-<<<<<<< HEAD
-=======
   int t;
   cin >> t;
   while (t--)
   {
-    uint n;
-    cin >> n;
-    readarray(a, n);
+    ull n;
+    readszandarray(a, n);
+
+    for (ull i = 0; i < n; i++)
+    {
+      int rhs = a[i] - (i + 1);
+      freq[rhs]++;
+    }
+
+    ull sol = 0;
+    for (auto it : freq)
+    {
+      sol += (it.second - 1) * it.second / 2;
+    }
+    cout << sol << "\n";
+    freq.clear();
   }
 
->>>>>>> a61c704 (problems)
   return 0;
 }
 
@@ -68,14 +71,14 @@ void printarray(T v[], uint n)
 }
 
 template <typename T>
-void readarray(T v[], uint n)
+void readarray(T v[], ull n)
 {
-  for (uint i = 0; i < n; i++)
+  for (ull i = 0; i < n; i++)
     cin >> v[i];
 }
 
 template <typename T>
-void readszandarray(T v[], uint &n)
+void readszandarray(T v[], ull &n)
 {
   cin >> n;
   readarray(v, n);

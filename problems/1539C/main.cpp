@@ -17,33 +17,43 @@ template <typename T>
 void readszandarray(T v[], uint &n);
 void prep();
 
-const int nmax = 1e5;
-
-<<<<<<< HEAD
-=======
+const ull nmax = 2e5;
 ull a[nmax];
 
-ull calc_cost(ull v[], uint n)
-{
-}
-
->>>>>>> a61c704 (problems)
 int main()
 {
   prep();
 
-<<<<<<< HEAD
-=======
-  int t;
-  cin >> t;
-  while (t--)
+  ull n, k, x;
+  cin >> n >> k >> x;
+  readarray(a, n);
+  sort(a, a + n);
+
+  uint joints = 0;
+  for (uint i = 1; i < n; i++)
   {
-    uint n;
-    cin >> n;
-    readarray(a, n);
+    ull dif = a[i] - a[i - 1];
+    if (dif > x)
+    {
+      a[joints++] = dif;
+    }
   }
 
->>>>>>> a61c704 (problems)
+  sort(a, a + joints);
+
+  uint unified = 0;
+  for (uint i = 0; i < joints && k; i++)
+  {
+    ull need = a[i] / x - (a[i] % x == 0);
+    if (need <= k)
+    {
+      unified++;
+      k -= need;
+    }
+  }
+
+  cout << joints - unified + 1 << "\n";
+
   return 0;
 }
 

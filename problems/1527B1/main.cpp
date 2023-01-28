@@ -19,31 +19,36 @@ void prep();
 
 const int nmax = 1e5;
 
-<<<<<<< HEAD
-=======
-ull a[nmax];
-
-ull calc_cost(ull v[], uint n)
-{
-}
-
->>>>>>> a61c704 (problems)
 int main()
 {
   prep();
 
-<<<<<<< HEAD
-=======
   int t;
   cin >> t;
   while (t--)
   {
-    uint n;
+    int n;
     cin >> n;
-    readarray(a, n);
+    int cnt = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+      char c;
+      cin >> c;
+
+      if (c == '0')
+        cnt++;
+    }
+    if (cnt == 0)
+      cout << "DRAW\n";
+    else if (cnt <= 2)
+      cout << "BOB\n";
+    else if (cnt % 2 == 0)
+      cout << "BOB\n";
+    else if (cnt % 2 == 1)
+      cout << "ALICE\n";
   }
 
->>>>>>> a61c704 (problems)
   return 0;
 }
 

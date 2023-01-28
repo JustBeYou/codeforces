@@ -17,6 +17,7 @@ template <typename T>
 void readszandarray(T v[], uint &n);
 void prep();
 
+<<<<<<< HEAD
 const int nmax = 1e5;
 vector<int> squares;
 int sol[nmax];
@@ -42,11 +43,20 @@ int main()
   {
     squares.push_back(i * i);
   }
+=======
+const uint nmax = 1e5;
+int sol[nmax];
+
+int main()
+{
+  prep();
+>>>>>>> a61c704 (problems)
 
   int t;
   cin >> t;
   while (t--)
   {
+<<<<<<< HEAD
     int n;
     cin >> n;
 
@@ -64,6 +74,27 @@ int main()
 
       k = k - (margin - pos + 1);
       margin = pos - 1;
+=======
+    uint n;
+    cin >> n;
+
+    memset(sol, -1, sizeof(int) * n);
+
+    for (uint i = 0; i < n; i++)
+    {
+      for (uint j = 0, sq = 0; sq < 2 * n - 1; j++, sq = j * j)
+      {
+        if (sq < i)
+          continue;
+
+        uint pos = sq - i;
+        if (pos < n && sol[pos] == -1)
+        {
+          sol[pos] = i;
+          break;
+        }
+      }
+>>>>>>> a61c704 (problems)
     }
 
     printarray(sol, n);
