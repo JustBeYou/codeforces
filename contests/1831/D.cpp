@@ -23,26 +23,6 @@ int main()
 {
   prep();
 
-  int t;
-  cin >> t;
-  while (t--)
-  {
-    ull x;
-    cin >> x;
-
-    ull a = x / 2ULL;
-    ull b = x + x / 2ULL;
-
-    if (((a ^ b) == x) && ((a + b) / 2) == x)
-    {
-      cout << a << " " << b << "\n";
-    }
-    else
-    {
-      cout << "-1\n";
-    }
-  }
-
   return 0;
 }
 

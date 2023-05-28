@@ -17,11 +17,41 @@ template <typename T>
 void readszandarray(T v[], uint &n);
 void prep();
 
-const int nmax = 1e5;
+const int nmax = 2 * 1e5 + 1;
+
+uint a[nmax];
+map<uint, uint> seq;
 
 int main()
 {
   prep();
+
+  uint t;
+  cin >> t;
+  while (t--)
+  {
+    uint n;
+    readszandarray(a, n);
+    sort(a, a + n);
+
+    uint sol = 0;
+    for (uint i = 0; i < n; i++)
+    {
+      if (seq[a[i] - 1] == 0)
+      {
+        seq[a[i]] += 1;
+        sol += 1;
+      }
+      else
+      {
+        seq[a[i] - 1]--;
+        seq[a[i]]++;
+      }
+    }
+
+    cout << sol << "\n";
+    seq.clear();
+  }
 
   return 0;
 }

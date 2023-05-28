@@ -17,11 +17,47 @@ template <typename T>
 void readszandarray(T v[], uint &n);
 void prep();
 
-const int nmax = 1e5;
+const int nmax = 51;
+uint sol[nmax];
 
 int main()
 {
   prep();
+
+  int t;
+  cin >> t;
+  while (t--)
+  {
+    int n, s, r;
+    cin >> n >> s >> r;
+
+    int x = s - r;
+    n--;
+
+    for (int i = 0; i < n; i++)
+    {
+      sol[i] = 1;
+      r--;
+    }
+
+    x--;
+    for (int i = 0; i < n && r > 0; i++)
+    {
+      if (r <= x)
+      {
+        sol[i] += r;
+        r = 0;
+      }
+      else
+      {
+        sol[i] += x;
+        r -= x;
+      }
+    }
+
+    sol[n] = x + 1;
+    printarray(sol, n + 1);
+  }
 
   return 0;
 }

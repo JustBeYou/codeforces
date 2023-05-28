@@ -17,11 +17,66 @@ template <typename T>
 void readszandarray(T v[], uint &n);
 void prep();
 
-const int nmax = 1e5;
+const int nmax = 101;
+
+int p[nmax][nmax];
+int freq[nmax];
+int sol[nmax];
 
 int main()
 {
   prep();
+
+  int t;
+  cin >> t;
+  while (t--)
+  {
+    int n;
+    cin >> n;
+
+    for (int i = 0; i < n; i++)
+    {
+      for (int j = 0; j < n - 1; j++)
+      {
+        cin >> p[i][j];
+      }
+    }
+
+    memset(freq, 0, sizeof(int) * nmax);
+
+    int a = 0, b = 0;
+    for (int i = 0; i < n; i++)
+    {
+      int x = p[i][0];
+      freq[x]++;
+      if (!a)
+      {
+        a = x;
+      }
+      else if (!b && a != x)
+      {
+        b = x;
+      }
+    }
+
+    sol[0] = freq[a] > freq[b] ? a : b;
+    sol[1] = freq[a] > freq[b] ? b : a;
+
+    for (int j = 1; j < n - 1; j++)
+    {
+      for (int i = 0; i < n; i++)
+      {
+        int x = p[i][j];
+        if (x != sol[j])
+        {
+          sol[j + 1] = x;
+          break;
+        }
+      }
+    }
+
+    printarray(sol, n);
+  }
 
   return 0;
 }
