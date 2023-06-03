@@ -17,11 +17,56 @@ template <typename T>
 void readszandarray(T v[], uint &n);
 void prep();
 
-const int nmax = 1e5;
+const int nmax = 2e5 + 5;
+
+typedef struct {
+  int to, pos;
+} edge;
+
+vector<edge> tree[nmax];
+
+int sol = 0;
+void dfs(int node, int parent = 0, int time = 0, int curr = 1) {
+  sol = max(sol, curr);
+
+  for (auto next_node: tree[node]) {
+    if (next_node.to == parent) continue;
+
+    if (time > next_node.pos) {
+      dfs(next_node.to, node, next_node.pos, curr + 1);
+    } else {
+      dfs(next_node.to, node, next_node.pos, curr);
+    }
+
+  }
+}
 
 int main()
 {
   prep();
+
+  int t;cin >>t;
+  while (t--) {
+    int n; cin >> n;
+    sol = 0;
+
+    for (int i =0; i <= n; i++) {
+      tree[i].clear();
+    }
+
+    for (int i = 0; i < n-1; i++) {
+      int x, y;
+      cin >> x>>y;
+
+      tree[x].push_back({y, i});
+      tree[y].push_back({x, i});
+    }
+
+
+    dfs(1);
+
+    cout << sol << "\n";
+  }
 
   return 0;
 }

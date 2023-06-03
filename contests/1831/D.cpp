@@ -17,11 +17,29 @@ template <typename T>
 void readszandarray(T v[], uint &n);
 void prep();
 
-const int nmax = 1e5;
+const int nmax = 2e5+5;
+int a[nmax];
+int b[nmax];
 
 int main()
 {
   prep();
+
+  int t; cin >> t;
+  while (t--) {
+    int n; cin >> n;
+    
+    readarray(a, n);
+    readarray(b, n);
+
+    int limit = static_cast<int>(sqrt(2*n))+1;
+
+    for (int i = 1; i < limit; i++) {
+      for (int j = 1; j < limit; j++) {
+        
+      }
+    }
+  }
 
   return 0;
 }
