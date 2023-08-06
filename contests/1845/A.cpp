@@ -21,46 +21,73 @@ template <typename T>
 void read_vector_and_size(vector<T> &v, uint &n);
 void prep();
 
-const uint nmax = 51;
+const uint nmax = 101;
 
-ull a[nmax], b[nmax];
+bool marked[nmax];
+int last[nmax], sol[nmax];
 
 int main()
 {
   prep();
 
+  uint n, k, x;
   int t;
   cin >> t;
   while (t--)
   {
-    uint n, m;
-    cin >> n >> m;
-    read_array(a, n);
-    read_array(b, m);
+    cin >> n >> k >> x;
 
-    ull s1 = 0;
-    for (uint i = 0; i < n; i++)
+    for (uint i = 0; i < nmax; i++)
     {
-      s1 += a[i];
+      marked[i] = false;
+      last[i] = 0;
     }
 
-    ull s2 = 0;
-    for (uint i = 0; i < m; i++)
+    for (uint i = 1; i <= k; i++)
     {
-      s2 += b[i];
+      if (i == x)
+      {
+        continue;
+      }
+      marked[i] = true;
     }
 
-    if (s1 > s2)
+    for (uint i = 0; i < nmax; i++)
     {
-      cout << "Tsondu\n";
+      for (uint j = 1; j <= k; j++)
+      {
+        if (j == x)
+        {
+          continue;
+        }
+
+        for (uint l = 1; l <= n && l + j <= n; l++)
+        {
+          if (marked[l])
+          {
+            marked[l + j] = true;
+            last[l + j] = l;
+          }
+        }
+      }
     }
-    else if (s1 == s2)
+
+    if (marked[n])
     {
-      cout << "Draw\n";
+      cout << "YES\n";
+      uint m = 0;
+      while (last[n] != 0)
+      {
+        sol[m++] = n - last[n];
+        n = last[n];
+      }
+      sol[m++] = n;
+      cout << m << "\n";
+      print_array(sol, m);
     }
     else
     {
-      cout << "Tenzing\n";
+      cout << "NO\n";
     }
   }
 

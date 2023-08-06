@@ -27,7 +27,22 @@ int main()
 {
   prep();
 
-  uint n; int t;
+  uint n;
+  int t;
+  cin >> t;
+  while (t--)
+  {
+    cin >> n;
+    uint sol = 0;
+    for (uint i = 0; i < n; i++)
+    {
+      int a, b;
+      cin >> a >> b;
+      if (a - b > 0)
+        sol++;
+    }
+    cout << sol << "\n";
+  }
 
   return 0;
 }

@@ -27,7 +27,14 @@ int main()
 {
   prep();
 
-  uint n; int t;
+  int t;
+  cin >> t;
+  while (t--)
+  {
+    int a, b;
+    cin >> a >> b;
+    cout << a + b << "\n";
+  }
 
   return 0;
 }

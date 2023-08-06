@@ -3,6 +3,7 @@ Contets to solve
 
 - [ ] https://codeforces.com/contest/1842
 - [ ] https://codeforces.com/contest/1844
+- [ ] https://codeforces.com/contest/1845
 - [ ] https://codeforces.com/contest/1846
 - [ ] https://codeforces.com/contest/1847
 - [ ] https://codeforces.com/contest/1848

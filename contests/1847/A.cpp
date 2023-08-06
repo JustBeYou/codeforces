@@ -21,13 +21,40 @@ template <typename T>
 void read_vector_and_size(vector<T> &v, uint &n);
 void prep();
 
-const uint nmax = 1e5;
+const uint nmax = 150;
+uint a[nmax];
 
 int main()
 {
   prep();
 
-  uint n; int t;
+  uint n, k;
+  int t;
+  cin >> t;
+  while (t--)
+  {
+    cin >> n >> k;
+    read_array(a, n);
+    priority_queue<uint, vector<uint>, less<int>> pq;
+
+    uint sum = 0;
+    for (uint i = 0; i < n - 1; i++)
+    {
+      uint power = a[i + 1] > a[i] ? a[i + 1] - a[i] : a[i] - a[i + 1];
+      sum += power;
+      pq.push(power);
+    }
+
+    while (k-- > 1 && !pq.empty())
+    {
+      uint largest = pq.top();
+      pq.pop();
+
+      sum -= largest;
+    }
+
+    cout << sum << "\n";
+  }
 
   return 0;
 }

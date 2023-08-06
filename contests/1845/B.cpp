@@ -21,48 +21,13 @@ template <typename T>
 void read_vector_and_size(vector<T> &v, uint &n);
 void prep();
 
-const uint nmax = 51;
-
-ull a[nmax], b[nmax];
+const uint nmax = 1e5;
 
 int main()
 {
   prep();
 
-  int t;
-  cin >> t;
-  while (t--)
-  {
-    uint n, m;
-    cin >> n >> m;
-    read_array(a, n);
-    read_array(b, m);
-
-    ull s1 = 0;
-    for (uint i = 0; i < n; i++)
-    {
-      s1 += a[i];
-    }
-
-    ull s2 = 0;
-    for (uint i = 0; i < m; i++)
-    {
-      s2 += b[i];
-    }
-
-    if (s1 > s2)
-    {
-      cout << "Tsondu\n";
-    }
-    else if (s1 == s2)
-    {
-      cout << "Draw\n";
-    }
-    else
-    {
-      cout << "Tenzing\n";
-    }
-  }
+  uint n; int t;
 
   return 0;
 }
