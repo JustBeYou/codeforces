@@ -23,6 +23,12 @@ int main()
 {
   prep();
 
+  uint n;
+  vector<int> v;
+  cin >> n;
+  read_vector(v, n);
+  print_vector(v, n);
+
   return 0;
 }
 
@@ -57,6 +63,10 @@ template <typename T>
 void read_vector(vector<T> &v, uint n)
 {
   n = n == 0 ? v.size() : n;
+  if (n > v.size())
+  {
+    v.resize(n);
+  }
   for (uint i = 0; i < n; i++)
   {
     cin >> v[i];
