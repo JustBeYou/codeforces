@@ -8,16 +8,16 @@ typedef unsigned int uint;
 typedef unsigned char uchar;
 
 template <typename T>
-void printarray(T v[], uint n);
+void print_array(const T v[], uint n);
 template <typename T>
-void printvector(vector<T> v);
+void print_vector(const vector<T> &v, uint n = 0);
 template <typename T>
-void readarray(T v[], uint n);
+void read_array(T v[], uint n);
 template <typename T>
-void readszandarray(T v[], uint &n);
+void read_vector(vector<T> &v, uint n = 0);
 void prep();
 
-const int nmax = 1e5;
+const uint nmax = 1e5;
 
 int main()
 {
@@ -37,35 +37,39 @@ void prep()
 }
 
 template <typename T>
-void printarray(T v[], uint n)
+void print_array(const T v[], uint n)
 {
   for (uint i = 0; i < n; i++)
   {
     cout << v[i] << " ";
   }
-  cout << endl;
+  cout << "\n";
 }
 
 template <typename T>
-void readarray(T v[], uint n)
+void read_array(T v[], uint n)
 {
   for (uint i = 0; i < n; i++)
     cin >> v[i];
 }
 
 template <typename T>
-void readszandarray(T v[], uint &n)
+void read_vector(vector<T> &v, uint n)
 {
-  cin >> n;
-  readarray(v, n);
+  n = n == 0 ? v.size() : n;
+  for (uint i = 0; i < n; i++)
+  {
+    cin >> v[i];
+  }
 }
 
 template <typename T>
-void printvector(vector<T> v)
+void print_vector(const vector<T> &v, uint n)
 {
-  for (uint i = 0; i < v.size(); i++)
+  n = n == 0 ? v.size() : n;
+  for (uint i = 0; i < n; i++)
   {
     cout << v[i] << " ";
   }
-  cout << endl;
+  cout << "\n";
 }
