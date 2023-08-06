@@ -14,7 +14,11 @@ void print_vector(const vector<T> &v, uint n = 0);
 template <typename T>
 void read_array(T v[], uint n);
 template <typename T>
+void read_array_and_size(T v[], uint &n);
+template <typename T>
 void read_vector(vector<T> &v, uint n = 0);
+template <typename T>
+void read_vector_and_size(vector<T> &v, uint &n);
 void prep();
 
 const uint nmax = 1e5;
@@ -23,11 +27,7 @@ int main()
 {
   prep();
 
-  uint n;
-  vector<int> v;
-  cin >> n;
-  read_vector(v, n);
-  print_vector(v, n);
+  uint n, t;
 
   return 0;
 }
@@ -60,9 +60,31 @@ void read_array(T v[], uint n)
 }
 
 template <typename T>
+void read_array_and_size(T v[], uint &n)
+{
+  cin >> n;
+  for (uint i = 0; i < n; i++)
+    cin >> v[i];
+}
+
+template <typename T>
 void read_vector(vector<T> &v, uint n)
 {
   n = n == 0 ? v.size() : n;
+  if (n > v.size())
+  {
+    v.resize(n);
+  }
+  for (uint i = 0; i < n; i++)
+  {
+    cin >> v[i];
+  }
+}
+
+template <typename T>
+void read_vector_and_size(vector<T> &v, uint &n)
+{
+  cin >> n;
   if (n > v.size())
   {
     v.resize(n);
