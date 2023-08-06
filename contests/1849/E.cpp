@@ -27,7 +27,7 @@ int main()
 {
   prep();
 
-  uint n, t;
+  uint n; int t;
 
   return 0;
 }

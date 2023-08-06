@@ -27,7 +27,9 @@ int main()
 {
   prep();
 
-  uint n, t;
+  uint n;
+  int t;
+  cin >> t;
 
   return 0;
 }
