@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from os import system
+from os import system, path
 from sys import argv
 
 
@@ -23,14 +23,16 @@ if lng not in ["cpp", "hs"]:
 
 if cmd == "g":
     if t == "c":
-        system(f"mkdir -p contests/{i}")
-        for c in "ABCDEF":
-            system(f"cp template.cpp contests/{i}/{c}.cpp")
-        system(f"touch contests/{i}/input")
+        if not path.exists(f"./contests/{i}"):
+            system(f"mkdir -p contests/{i}")
+            for c in "ABCDEF":
+                system(f"cp template.cpp contests/{i}/{c}.cpp")
+            system(f"touch contests/{i}/input")
     elif t == "p":
-        system(f"mkdir -p problems/{i}")
-        system(f"cp template.cpp problems/{i}/main.cpp")
-        system(f"touch problems/{i}/input")
+        if not path.exists(f"./problems/{i}"):
+            system(f"mkdir -p problems/{i}")
+            system(f"cp template.cpp problems/{i}/main.cpp")
+            system(f"touch problems/{i}/input")
     else:
         help()
 elif cmd == "r":
