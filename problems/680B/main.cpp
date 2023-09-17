@@ -21,32 +21,44 @@ template <typename T>
 void read_vector_and_size(vector<T> &v, uint &n);
 void prep();
 
-const uint nmax = 55;
-uint a[nmax];
+const uint nmax = 105;
+uint v[nmax];
 
 int main()
 {
   prep();
 
-  uint n;
-  int t;
-  cin >> t;
-  while (t--)
-  {
-    read_array_and_size(a, n);
+  int n, a;
+  cin >> n >> a;
+  a--;
+  read_array(v, n);
 
-    uint total = 0;
-    for (uint i = 0; i < n - 1; i++)
+  int dist = 0;
+  int sol = 0;
+
+  while (dist <= n + 1)
+  {
+    // cout << dist << endl;
+    if (dist == 0 && v[a])
     {
-      if (a[i] > a[i + 1])
-      {
-        total = max(total, a[i]);
-      }
+      sol++;
+    }
+    else if (a - dist < 0 && a + dist < n && v[a + dist])
+    {
+      sol++;
+    }
+    else if (a - dist >= 0 && a + dist >= n && v[a - dist])
+    {
+      sol++;
+    }
+    else if (a - dist >= 0 && a + dist < n && v[a - dist] && v[a + dist])
+    {
+      sol += 2;
     }
 
-    // print_array(a, n);
-    cout << total << "\n";
+    dist++;
   }
+  cout << sol << "\n";
 
   return 0;
 }
