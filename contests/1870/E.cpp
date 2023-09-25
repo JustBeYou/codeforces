@@ -27,8 +27,7 @@ int main()
 {
   prep();
 
-  uint n;
-  int t;
+  uint n; int t;
 
   return 0;
 }
@@ -37,10 +36,10 @@ void prep()
 {
 #ifdef DEBUG
   freopen("input", "r", stdin);
-#else
+#endif
+
   ios::sync_with_stdio(false);
   cin.tie(NULL);
-#endif
 }
 
 template <typename T>

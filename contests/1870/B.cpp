@@ -21,14 +21,52 @@ template <typename T>
 void read_vector_and_size(vector<T> &v, uint &n);
 void prep();
 
-const uint nmax = 1e5;
+const uint nmax = 2e5 + 50;
+uint a[nmax];
+uint b[nmax];
 
 int main()
 {
   prep();
 
-  uint n;
   int t;
+  cin >> t;
+  while (t--)
+  {
+    uint n, m;
+    cin >> n >> m;
+    read_array(a, n);
+    read_array(b, m);
+
+    uint b_or = 0;
+    for (uint i = 0; i < m; i++)
+    {
+      b_or |= b[i];
+    }
+
+    uint min_sol = 0, max_sol = 0;
+
+    uint xor_simple = 0, xor_b_or = 0;
+    for (uint i = 0; i < n; i++)
+    {
+      xor_simple ^= a[i];
+      xor_b_or ^= a[i] | b_or;
+    }
+
+    if (n % 2 == 0)
+    {
+      min_sol = xor_b_or;
+      max_sol = xor_simple;
+    }
+    else
+    {
+
+      min_sol = xor_simple;
+      max_sol = xor_b_or;
+    }
+
+    cout << min_sol << " " << max_sol << "\n";
+  }
 
   return 0;
 }
@@ -37,10 +75,10 @@ void prep()
 {
 #ifdef DEBUG
   freopen("input", "r", stdin);
-#else
+#endif
+
   ios::sync_with_stdio(false);
   cin.tie(NULL);
-#endif
 }
 
 template <typename T>

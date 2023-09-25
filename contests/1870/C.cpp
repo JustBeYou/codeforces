@@ -21,14 +21,60 @@ template <typename T>
 void read_vector_and_size(vector<T> &v, uint &n);
 void prep();
 
-const uint nmax = 1e5;
+const uint nmax = 1e5 + 50;
+uint a[nmax];
+const uint invalid = nmax * 2;
+
+uint sxy[nmax];
+uint exy[nmax];
 
 int main()
 {
   prep();
 
-  uint n;
   int t;
+  cin >> t;
+  while (t--)
+  {
+    uint n, k;
+    cin >> n >> k;
+    read_array(a, n);
+    for (uint i = 1; i <= k + 1; i++)
+    {
+      sxy[i] = exy[i] = invalid;
+    }
+
+    for (uint i = 0; i < n; i++)
+    {
+      if (sxy[a[i]] == invalid)
+        sxy[a[i]] = i;
+      exy[a[i]] = i;
+    }
+
+    uint maxi = invalid;
+    for (uint i = k; i > 0; i--)
+    {
+      if (sxy[i] == invalid)
+        continue;
+
+      if (maxi == invalid)
+        maxi = exy[i];
+
+      sxy[i] = min(sxy[i], sxy[i + 1]);
+      maxi = max(maxi, exy[i]);
+    }
+
+    for (uint i = 1; i <= k; i++)
+    {
+      if (sxy[i] == invalid)
+        cout << "0 ";
+      else
+      {
+        cout << (exy[i] - sxy[i] + 1) * 2 << " ";
+      }
+    }
+    cout << "\n";
+  }
 
   return 0;
 }

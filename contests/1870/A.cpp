@@ -27,8 +27,38 @@ int main()
 {
   prep();
 
-  uint n;
   int t;
+  cin >> t;
+  while (t--)
+  {
+    int n, k, x;
+    cin >> n >> k >> x;
+
+    if (n < k)
+    {
+      cout << "-1\n";
+      continue;
+    }
+
+    if (k > x + 1)
+    {
+      cout << "-1\n";
+      continue;
+    }
+
+    int s = (k - 1) * k / 2;
+
+    if (k == x)
+    {
+      s += (n - k) * (x - 1);
+    }
+    else
+    {
+      s += (n - k) * x;
+    }
+
+    cout << s << "\n";
+  }
 
   return 0;
 }
@@ -37,10 +67,10 @@ void prep()
 {
 #ifdef DEBUG
   freopen("input", "r", stdin);
-#else
+#endif
+
   ios::sync_with_stdio(false);
   cin.tie(NULL);
-#endif
 }
 
 template <typename T>
