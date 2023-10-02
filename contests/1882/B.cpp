@@ -1,0 +1,155 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+typedef unsigned long long ull;
+typedef signed long long ll;
+typedef unsigned int uint;
+typedef unsigned char uchar;
+
+template <typename T>
+void print_array(const T v[], uint n);
+template <typename T>
+void print_vector(const vector<T> &v, uint n = 0);
+template <typename T>
+void read_array(T v[], uint n);
+template <typename T>
+void read_array_and_size(T v[], uint &n);
+template <typename T>
+void read_vector(vector<T> &v, uint n = 0);
+template <typename T>
+void read_vector_and_size(vector<T> &v, uint &n);
+void prep();
+
+const uint nmax = 100;
+
+int main()
+{
+  prep();
+
+  int t;
+
+  cin >> t;
+  while (t--)
+  {
+    uint n;
+    set<uint> s[nmax];
+    set<uint> sks;
+
+    cin >> n;
+
+    for (uint i = 0; i < n; i++)
+    {
+      uint k;
+      cin >> k;
+      for (uint j = 0; j < k; j++)
+      {
+        uint x;
+        cin >> x;
+        s[i].insert(x);
+        sks.insert(x);
+      }
+    }
+
+    set<uint> sol;
+
+    for (auto sk : sks)
+    {
+      set<uint> cur;
+
+      for (uint i = 0; i < n; i++)
+      {
+        if (s[i].find(sk) == s[i].end())
+        {
+          for (auto si : s[i])
+          {
+            cur.insert(si);
+          }
+        }
+      }
+
+      if (sol.size() < cur.size())
+      {
+        sol = cur;
+      }
+    }
+
+    cout << sol.size() << "\n";
+  }
+
+  return 0;
+}
+
+void prep()
+{
+#ifdef DEBUG
+  freopen("input", "r", stdin);
+#else
+  ios::sync_with_stdio(false);
+  cin.tie(NULL);
+#endif
+}
+
+template <typename T>
+void print_array(const T v[], uint n)
+{
+  for (uint i = 0; i < n; i++)
+  {
+    cout << v[i] << " ";
+  }
+  cout << "\n";
+}
+
+template <typename T>
+void read_array(T v[], uint n)
+{
+  for (uint i = 0; i < n; i++)
+    cin >> v[i];
+}
+
+template <typename T>
+void read_array_and_size(T v[], uint &n)
+{
+  cin >> n;
+  for (uint i = 0; i < n; i++)
+    cin >> v[i];
+}
+
+template <typename T>
+void read_vector(vector<T> &v, uint n)
+{
+  n = n == 0 ? v.size() : n;
+  if (n > v.size())
+  {
+    v.resize(n);
+  }
+  for (uint i = 0; i < n; i++)
+  {
+    cin >> v[i];
+  }
+}
+
+template <typename T>
+void read_vector_and_size(vector<T> &v, uint &n)
+{
+  cin >> n;
+  if (n > v.size())
+  {
+    v.resize(n);
+  }
+  for (uint i = 0; i < n; i++)
+  {
+    cin >> v[i];
+  }
+}
+
+template <typename T>
+void print_vector(const vector<T> &v, uint n)
+{
+  n = n == 0 ? v.size() : n;
+  for (uint i = 0; i < n; i++)
+  {
+    cout << v[i] << " ";
+  }
+  cout << "\n";
+}
