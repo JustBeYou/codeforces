@@ -21,6 +21,8 @@ lng = argv[-1]
 if lng not in ["cpp", "hs"]:
     lng = "cpp"
 
+cpp_flags = "-g -DDEBUG -O2 -Wall -Wextra -fsanitize=address"
+
 if cmd == "g":
     if t == "c":
         if not path.exists(f"./contests/{i}"):
@@ -40,14 +42,14 @@ elif cmd == "r":
         p = argv[4]
         if lng == "cpp":
             system(
-                f"cd contests/{i} && g++ -O2 -Wall -Wextra {p}.cpp -DDEBUG -o {p}.elf && ./{p}.elf && rm ./{p}.elf")
+                f"cd contests/{i} && g++ {cpp_flags}  {p}.cpp -o {p}.elf && ./{p}.elf && rm ./{p}.elf")
         elif lng == "hs":
             system(
                 f"cd contests/{i} && ghc {p}.hs -DDEBUG -o {p}.elf && ./{p}.elf && rm ./{p}.elf")
     elif t == "p":
         if lng == "cpp":
             system(
-                f"cd problems/{i} && g++ -O2 -Wall -Wextra main.cpp -DDEBUG -o main.elf && ./main.elf && rm ./main.elf")
+                f"cd problems/{i} && g++ {cpp_flags} -o main.elf && ./main.elf && rm ./main.elf")
         elif lng == "hs":
             system(
                 f"cd problems/{i} && ghc main.hs -DDEBUG -o main.elf && cat ./input | ./main.elf && rm ./main.o ./main.hi ./main.elf")
