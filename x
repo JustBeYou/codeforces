@@ -21,7 +21,7 @@ lng = argv[-1]
 if lng not in ["cpp", "hs"]:
     lng = "cpp"
 
-cpp_flags = "-g -DDEBUG -O2 -Wall -Wextra -fsanitize=address"
+cpp_flags = "-std=c++11 -g -DDEBUG -O2 -Wall -Wextra -fsanitize=address"
 
 if cmd == "g":
     if t == "c":
@@ -49,7 +49,7 @@ elif cmd == "r":
     elif t == "p":
         if lng == "cpp":
             system(
-                f"cd problems/{i} && g++ {cpp_flags} -o main.elf && ./main.elf && rm ./main.elf")
+                f"cd problems/{i} && g++ main.cpp {cpp_flags} -o main.elf && ./main.elf && rm ./main.elf")
         elif lng == "hs":
             system(
                 f"cd problems/{i} && ghc main.hs -DDEBUG -o main.elf && cat ./input | ./main.elf && rm ./main.o ./main.hi ./main.elf")
