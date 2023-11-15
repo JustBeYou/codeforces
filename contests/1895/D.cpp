@@ -21,8 +21,7 @@ template <typename T>
 void read_vector_and_size(vector<T> &v, uint &n);
 void prep();
 
-const uint nmax = 2e5 + 100;
-vector<uint> G[nmax];
+const uint nmax = 1e5;
 
 int main()
 {
@@ -30,23 +29,6 @@ int main()
 
   uint n;
   int t;
-  cin >> t;
-  while (t--)
-  {
-    cin >> n;
-    for (uint i = 1; i <= n; i++)
-    {
-      G[i].clear();
-    }
-
-    for (uint i = 0; i < n - 1; i++)
-    {
-      uint u, v;
-      cin >> u >> v;
-      G[u].push_back(v);
-      G[v].push_back(u);
-    }
-  }
 
   return 0;
 }

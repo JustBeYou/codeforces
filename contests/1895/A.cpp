@@ -21,31 +21,24 @@ template <typename T>
 void read_vector_and_size(vector<T> &v, uint &n);
 void prep();
 
-const uint nmax = 2e5 + 100;
-vector<uint> G[nmax];
+const uint nmax = 1e5;
 
 int main()
 {
   prep();
 
-  uint n;
   int t;
   cin >> t;
   while (t--)
   {
-    cin >> n;
-    for (uint i = 1; i <= n; i++)
-    {
-      G[i].clear();
-    }
+    int x, y, k;
+    cin >> x >> y >> k;
 
-    for (uint i = 0; i < n - 1; i++)
-    {
-      uint u, v;
-      cin >> u >> v;
-      G[u].push_back(v);
-      G[v].push_back(u);
-    }
+    int d = abs(y - x);
+    int a = y + d;
+    int b = x + (k >= d ? d : k + (d - k) * 2);
+
+    cout << min(a, b) << "\n";
   }
 
   return 0;

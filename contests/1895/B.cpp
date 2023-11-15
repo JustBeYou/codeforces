@@ -21,8 +21,10 @@ template <typename T>
 void read_vector_and_size(vector<T> &v, uint &n);
 void prep();
 
-const uint nmax = 2e5 + 100;
-vector<uint> G[nmax];
+const uint nmax = 205;
+int a[nmax];
+int x[nmax];
+int y[nmax];
 
 int main()
 {
@@ -34,17 +36,31 @@ int main()
   while (t--)
   {
     cin >> n;
-    for (uint i = 1; i <= n; i++)
+    read_array(a, 2 * n);
+    sort(a, a + 2 * n);
+
+    for (uint i = 0; i < n; i++)
     {
-      G[i].clear();
+      x[i] = a[i];
+    }
+    for (uint i = n; i < 2 * n; i++)
+    {
+      y[2 * n - 1 - i] = a[i];
     }
 
-    for (uint i = 0; i < n - 1; i++)
+    // print_array(x, n);
+    // print_array(y, n);
+
+    ll sol = 0;
+    for (uint i = 1; i < n; i++)
     {
-      uint u, v;
-      cin >> u >> v;
-      G[u].push_back(v);
-      G[v].push_back(u);
+      sol += abs(x[i] - x[i - 1]) + abs(y[i] - y[i - 1]);
+    }
+
+    cout << sol << "\n";
+    for (uint i = 0; i < n; i++)
+    {
+      cout << x[i] << " " << y[i] << "\n";
     }
   }
 
