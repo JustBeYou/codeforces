@@ -19,7 +19,8 @@
     "cmath": "cpp",
     "set": "cpp",
     "bitset": "cpp",
-    "stacktrace": "cpp"
+    "stacktrace": "cpp",
+    "*.tcc": "cpp"
   },
   "C_Cpp.errorSquiggles": "enabled"
 }
