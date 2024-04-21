@@ -15,7 +15,7 @@ for k in powerset(l):
     if not len(k):
         continue
 
-    x = max(k)
+    x = max(ceil(sum(k)/2), max(k))
     s += x
 
 print(s)
