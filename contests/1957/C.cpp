@@ -23,41 +23,20 @@ void prep();
 
 const uint nmax = 3e5;
 const ull MOD = 1e9 + 7;
-ull fact[nmax];
-
-ull modinv(ull x)
-{
-  return x == 1 ? 1 : MOD - MOD / x * modinv(MOD % x) % MOD;
-}
-
-ull comb(ull n, ull k)
-{
-  if (k == 0 || k == n)
-    return 1;
-
-  ull r = fact[n] * modinv(fact[k]);
-  r %= MOD;
-  r = r * modinv(fact[n - k]);
-  r %= MOD;
-  return r;
-}
-
-void calc()
-{
-  fact[0] = 1;
-  fact[1] = 1;
-
-  for (ull i = 2; i < nmax; i++)
-  {
-    fact[i] = i * fact[i - 1];
-    fact[i] %= MOD;
-  }
-}
+ull dp[nmax + 1];
 
 int main()
 {
   prep();
-  calc();
+
+  dp[0] = 1;
+  dp[1] = 1;
+  dp[2] = 3;
+
+  for (ull i = 3; i <= nmax; i++)
+  {
+    dp[i] = (dp[i - 1] + (2 * (i - 1) * dp[i - 2]) % MOD) % MOD;
+  }
 
   int t;
   cin >> t;
@@ -69,38 +48,11 @@ int main()
     {
       ull r, c;
       cin >> r >> c;
-
-      if (r == c)
-      {
-        n--;
-      }
-      else
-      {
-        n -= 2;
-      }
+      n -= r == c ? 1 : 2;
     }
 
-    if (n == 1)
-    {
-      cout << "1\n";
-      continue;
-    }
-
-    ull sol = 0;
-    for (ull a = 0; 2ULL * a <= n; a++)
-    {
-      ull b = n - 2ULL * a;
-
-      ull csol = (((a > 0 ? fact[2 * a] : 1) % MOD) * comb(n, b)) % MOD;
-      sol += csol;
-      sol %= MOD;
-
-      assert(2 * a + b == n);
-    }
-
-    cout << sol << "\n";
+    cout << dp[n] << "\n";
   }
-
   return 0;
 }
 

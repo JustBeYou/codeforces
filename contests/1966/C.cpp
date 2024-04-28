@@ -22,8 +22,6 @@ void read_vector_and_size(vector<T> &v, uint &n);
 void prep();
 
 const uint nmax = 2e5;
-set<uint> s;
-uint a[nmax];
 
 int main()
 {
@@ -34,8 +32,9 @@ int main()
   cin >> t;
   while (t--)
   {
-    s.clear();
     cin >> n;
+
+    set<uint> s;
     for (uint i = 0; i < n; i++)
     {
       uint x;
@@ -43,55 +42,22 @@ int main()
       s.insert(x);
     }
 
-    if (n == 1 || s.size() == 1)
+    uint a = 1;
+    for (auto x : s)
     {
-      cout << "Alice\n";
-      continue;
-    }
-
-    n = s.size();
-    auto it = s.begin();
-    for (uint i = 0; i < n; i++)
-    {
-      a[i] = *it;
-      it++;
-    }
-
-    uint cl = 1;
-
-    for (uint i = 1; i < n; i++)
-    {
-      if (a[i] == a[i - 1] + 1)
+      if (x == a)
       {
-        cl++;
-      }
-      else
-      {
-        break;
+        a++;
       }
     }
 
-    if (cl == 1)
+    if (a > s.size())
     {
-      if (a[0] != 1)
-      {
-        cout << "Alice\n";
-      }
-      else
-      {
-        cout << "Bob\n";
-      }
+      cout << (a % 2 == 0 ? "Alice" : "Bob") << "\n";
     }
     else
     {
-      if (cl % 2 == 0 && a[0] == 1 && cl == n)
-      {
-        cout << "Bob\n";
-      }
-      else
-      {
-        cout << "Alice\n";
-      }
+      cout << (a % 2 == 1 ? "Alice" : "Bob") << "\n";
     }
   }
 
