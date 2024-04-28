@@ -21,7 +21,7 @@ lng = argv[-1]
 if lng not in ["cpp", "hs"]:
     lng = "cpp"
 
-cpp_flags = "-std=c++11 -g -DDEBUG -O2 -Wall -Wextra -fsanitize=address"
+cpp_flags = "-std=c++11 -g -DDEBUG -O2 -Wall -Wextra -fsanitize=address -fsanitize=undefined"
 
 if cmd == "g":
     if t == "c":
